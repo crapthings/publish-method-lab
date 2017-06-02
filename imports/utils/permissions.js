@@ -8,6 +8,8 @@ export default {
       .difference(_.get(value, 'allow', []))
       .size()
       .value() ? false : true
-  }
+  },
+
+  undefined() { return false },
 
 }

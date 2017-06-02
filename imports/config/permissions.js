@@ -11,8 +11,10 @@ export default {
       author: true,
       contributor: true,
       user: {
-        in: ['gms'],
-        allow: ['title', 'content'],
+        allow: ['title', 'content', 'groupId'],
+        link: {
+          groupId: { groups: 'gms' },
+        }
       },
     },
   },
