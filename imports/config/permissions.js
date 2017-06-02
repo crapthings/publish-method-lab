@@ -11,7 +11,8 @@ export default {
       author: true,
       contributor: true,
       user: {
-        allow: ['title']
+        in: ['gms'],
+        allow: ['title', 'content'],
       },
     },
   },
