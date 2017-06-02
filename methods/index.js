@@ -10,7 +10,7 @@ Meteor.methods({
     const currentRole = _.get(currentUser, 'role')
     const roleVal = _.get(permissions, `insert.${collection}.${currentRole}`)
 
-    console.log(typeOf(roleVal), roleVal)
+    // console.log(typeOf(roleVal), roleVal)
 
     if (roleVal && roleVal.link) {
       const linkKeys = _.keys(roleVal.link)
@@ -19,7 +19,7 @@ Meteor.methods({
         const [ targetCollection, linkCollection ] = _.first(_.toPairs(roleVal.link[key]))
         const targetDoc = Mongo.Collection.get(targetCollection).findOne(linkId)
 
-        console.log(targetDoc, linkDoc)
+        // console.log(targetDoc, linkDoc)
 
         if (! targetDoc)
           throw new Meteor.Error('insert', '相关文档不存在。')

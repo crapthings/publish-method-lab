@@ -11,7 +11,7 @@ export default {
       author: true,
       contributor: true,
       user: {
-        allow: ['title', 'content', 'groupId'],
+        allow: ['title', 'content'],
         link: {
           groupId: { groups: 'gms' },
         }
