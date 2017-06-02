@@ -9,9 +9,9 @@
 <template name='login'>
   <p>
     {{#if currentUser}}
-      <button onClick='Meteor.logout();'>logout</button>
+      <button id='btnLogout'>logout</button>
     {{else}}
-      <button onClick='Meteor.loginWithPassword("user", "123");'>login as user</button>
+      <button id='btnLoginUser'>login as user</button>
     {{/if}}
   </p>
 </template>

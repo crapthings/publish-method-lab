@@ -1,5 +1,22 @@
 const ErrorMessage = new ReactiveVar()
 
+Template.login.events({
+  'click #btnLogout'() {
+    ErrorMessage.set(null)
+    Meteor.logout()
+  },
+
+  'click #btnLoginUser'() {
+    Meteor.loginWithPassword('user', '123', function (err) {
+      if (err)
+        return ErrorMessage.set(JSON.stringify(err))
+
+      ErrorMessage.set(null)
+    })
+  }
+
+})
+
 Template.insert.events({
   'click button#insert1'() {
     Meteor.call('insert', 'posts', {
@@ -21,6 +38,8 @@ Template.insert.events({
     }, function (err, resp) {
       if (err)
         return ErrorMessage.set(JSON.stringify(err))
+
+      ErrorMessage.set(null)
     })
   },
 })
