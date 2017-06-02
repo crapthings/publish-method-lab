@@ -35,6 +35,7 @@ Template.insert.events({
       content: faker.lorem.paragraphs(),
       groupId: _.get(Groups.findOne(), '_id'),
       blah: true,
+      wrongfield: 'aaa',
     }, function (err, resp) {
       if (err)
         return ErrorMessage.set(JSON.stringify(err))

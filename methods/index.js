@@ -40,8 +40,11 @@ Meteor.methods({
     const step1 = decide[typeOf(roleVal)]
     const isAllow = step1(roleVal, doc)
 
-    if (! isAllow)
-      throw new Meteor.Error('insert', 'failed')
+    if (! isAllow.a) {
+      console.log(isAllow.b)
+      const failedFileds = _.join(_.get(isAllow, 'b', []), ', ')
+      throw new Meteor.Error('insert', `failed fileds ${failedFileds}`)
+    }
 
     return Mongo.Collection.get(collection).insert(doc)
   },
