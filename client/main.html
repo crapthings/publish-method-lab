@@ -1,0 +1,51 @@
+<body>
+  打开 console 看 log
+
+  {{> login}}
+  {{> insert}}
+  {{> inspector}}
+</body>
+
+<template name='login'>
+  <p>
+    {{#if currentUser}}
+      <button onClick='Meteor.logout();'>logout</button>
+    {{else}}
+      <button onClick='Meteor.loginWithPassword("user", "123");'>login as user</button>
+    {{/if}}
+  </p>
+</template>
+
+<template name='insert'>
+  <div>
+    <p>
+      <button id='insert1'>有效的 insert</button>
+    </p>
+    <p>
+      <button id='insert2'>无效插入 多出 blah 字段</button>
+    </p>
+  </div>
+</template>
+
+<template name='inspector'>
+  <h3>error</h3>
+  <p>{{error}}</p>
+
+  <h3>current user</h3>
+  {{user}}
+
+  <h3>group list</h3>
+  {{#each groups}}
+    {{this}}
+  {{/each}}
+
+  <h3>group member list</h3>
+  {{#each gms}}
+    {{this}}
+  {{/each}}
+
+  <h3>post list</h3>
+  {{#each posts}}
+    <p>{{this}}</p>
+  {{/each}}
+</template>

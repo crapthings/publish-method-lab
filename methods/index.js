@@ -6,6 +6,10 @@ import decide from '/imports/utils/permissions'
 Meteor.methods({
 
   insert(collection, doc) {
+
+    if (!this.userId)
+      throw new Meteor.Error('insert', 'user 未登录')
+
     const currentUser = Meteor.users.findOne(this.userId)
     const currentRole = _.get(currentUser, 'role')
     const roleVal = _.get(permissions, `insert.${collection}.${currentRole}`)
@@ -22,7 +26,7 @@ Meteor.methods({
         // console.log(targetDoc, linkDoc)
 
         if (! targetDoc)
-          throw new Meteor.Error('insert', '相关文档不存在。')
+          throw new Meteor.Error('insert', `${targetCollection} 不存在`)
 
         const linkDoc = Mongo.Collection.get(linkCollection).findOne({ [key]: targetDoc._id, userId: currentUser._id })
 
